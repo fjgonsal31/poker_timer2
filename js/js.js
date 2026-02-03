@@ -253,8 +253,8 @@ function secondsToTime(seconds = 0) {
 
 function createTimer(renderElement, isCountDown = true, time = "00:00:00") {
     let secs = timeToSeconds(time);
-    const soundMinute = new Audio('/audio/unMinuto.mp3');
-    const soundEnd = new Audio('/audio/subenCiegas.mp3');
+    const soundMinute = new Audio('./audio/unMinuto.mp3');
+    const soundEnd = new Audio('./audio/subenCiegas.mp3');
     soundMinute.preload = 'auto';
     soundEnd.preload = 'auto';
 
