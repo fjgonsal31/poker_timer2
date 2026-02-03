@@ -690,7 +690,6 @@ function handleLevelChange(direction) {
         }
 
         pauseTimer(timerLevel);
-        pauseTimer(timerET);
         pauseTimer(timerBreak);
 
         if (event.isTrusted) {
@@ -698,7 +697,6 @@ function handleLevelChange(direction) {
             play = false;
         } else {
             startTimers();
-            if (level.textContent === "Descanso") pauseTimer(timerET);
         }
     };
 }
