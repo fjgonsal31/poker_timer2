@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<lang="es">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Poker Timer</title>
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/modal.css" />
+        <script src="https://kit.fontawesome.com/069b9c272f.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <!-- ++++++ MAIN ++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <div class="grid-container">
+            <!-- first row -->
+            <div class="top-row one" id="firstRow">
+                <button id="settingsBtn"><i class="fa-solid fa-bars"></i></button>
+                <p id="title">-</p>
+                <button id="themeBtn"><i class="fa-solid fa-palette"></i></button>
+            </div>
+            <!-- main content -->
+            <div class="main-content">
+                <!-- col1 -->
+                <div class="column" id="col1">
+                    <!-- current time -->
+                    <div id="currentTimeDiv" class="div three">
+                        <p id="currentTime">Hora<br /><span id="sCT"></span></p>
+                    </div>
+                    <!-- elapsed -->
+                    <div id="elapsedTimeDiv" class="div two">
+                        <p id="elapsedTime">En juego<br /><span id="sET">-</span></p>
+                    </div>
+                    <!-- break -->
+                    <div id="nextBreakDiv" class="div three">
+                        <p id="nextBreakP">
+                            <span id="sNBr1">Descanso en</span><br /><span id="sNBr2">-</span>
+                        </p>
+                    </div>
+                    <!-- avg -->
+                    <div id="avgDiv" class="div two">
+                        <p id="avg">Media <br /><span id="sAvg">-</span></p>
+                    </div>
+                </div>
+                <!-- col2 -->
+                <div class="column" id="col2">
+                    <!-- level -->
+                    <div id="levelDiv" class="div two">
+                        <button id="lev-" class="btnEdit btn" disabled>-</button>
+                        <p id="level">Nivel -</p>
+                        <button id="lev+" class="btnEdit btn">+</button>
+                    </div>
+                    <!-- time -->
+                    <div id="timeDiv" class="div one">
+                        <p id="time">-</p>
+                        <div id="timeDivBtn">
+                            <button id="start" class="btnAction btn" disabled>Empezar</button>
+                            <button id="pause" class="btnAction btn">Pausar</button>
+                            <button id="reset" class="btnAction btn">Resetear</button>
+                        </div>
+                    </div>
+                    <!-- blinds -->
+                    <div id="blindDiv" class="div two">
+                        <p id="blinds">
+                            <span id="sBl">-</span>
+                            <span id="sA1">ante</span>
+                            <span id="sA2">-</span>
+                        </p>
+                    </div>
+                    <!-- next blinds -->
+                    <div id="nextBlindsDiv" class="div one">
+                        <p id="nextBlinds">
+                            <span id="sNBl1">Siguiente nivel: </span>
+                            <span id="sNBl2">-</span>
+                            <span id="sNBl3">ante</span>
+                            <span id="sNBl4">-</span>
+                        </p>
+                    </div>
+                    <!-- control panel -->
+                    <div id="controlPanel" class="div three">
+                        <div id="row1" class="panel">
+                            <button id="l-" class="btnEdit btn" disabled>-</button>
+                            <p class="pPanel">Jugadores</p>
+                            <button id="l+" class="btnEdit btn" disabled>+</button>
+                            <button id="e-" class="btnEdit btn" disabled>-</button>
+                            <p class="pPanel">Entradas</p>
+                            <button id="e+" class="btnEdit btn">+</button>
+                        </div>
+                        <div id="row2" class="panel">
+                            <button id="r-" class="btnEdit btn" disabled>-</button>
+                            <p class="pPanel">Recompras</p>
+                            <button id="r+" class="btnEdit btn" disabled>+</button>
+                            <button id="a-" class="btnEdit btn" disabled>-</button>
+                            <p class="pPanel">Add-ons</p>
+                            <button id="a+" class="btnEdit btn" disabled>+</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- col3 -->
+                <div class="column" id="col3">
+                    <!-- buy ins -->
+                    <div id="buyInsDiv" class="div three">
+                        <p id="buyIns">Entradas <br /><span id="sB">0</span></p>
+                    </div>
+                    <!-- rebuys -->
+                    <div id="rebuysDiv" class="div two">
+                        <p id="rebuys">Recompras <br /><span id="sR">-</span></p>
+                    </div>
+                    <!-- add ons -->
+                    <div id="addonsDiv" class="div three">
+                        <p id="addons">Add-ons <br /><span id="sAd">-</span></p>
+                    </div>
+                    <!-- players -->
+                    <div id="playersDiv" class="div two">
+                        <p id="players">Jugadores <br /><span id="sP">0/0</span></p>
+                    </div>
+                </div>
+            </div>
+            <!-- last row -->
+            <div class="bottom-row one" id="lastRow">
+                <!-- info -->
+                <p id="infoMtt">
+                    <span id="iM1" class="bold">Stack inicial:</span>
+                    <span id="iM2" class="bold">-</span>
+                    <span id="iM3" class="bold">| Entrada/recompra/add-on:</span>
+                    <span id="iM4" class="bold">-</span>
+                    <span id="iM5" class="bold">€</span>
+                    <span id="iM6" class="bold">| Recompras hasta final Nivel</span>
+                    <span id="iM7" class="bold">-</span>
+                </p>
+                <!-- prizes -->
+                <p id="prizes"></p>
+            </div>
+            <!-- theme -->
+            <div id="themeDiv">
+                <select id="themeSelect">
+                    <option value="blue">Azul</option>
+                    <option value="red">Rojo</option>
+                    <option value="green">Verde</option>
+                </select>
+            </div>
+        </div>
+        <!-- ++++++ MODAL ++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <!-- sect info modal -->
+                <section id="sectInfoModal">
+                    <!-- torneo -->
+                    <div id="mttDivModal">
+                        <h4>Torneo</h4>
+                        <!-- fecha -->
+                        <input type="text" id="dateModal" class="input" readonly disabled />
+                        <!-- nombre del torneo -->
+                        <input type="text" id="nameModal" class="input elementMttModal"
+                            placeholder="Nombre del torneo" />
+                        <!-- quitar value-->
+                        <div>
+                            <!-- stack -->
+                            <label for="stackModal">Stack inicial:</label>
+                            <input type="number" id="stackModal" class="input elementMttModal" min="100" step="100" />
+                            <!-- quitar value-->
+                        </div>
+                        <div>
+                            <!-- entrada -->
+                            <label for="buyInModal">Entrada:</label>
+                            <input type="number" id="buyInModal" class="input elementMttModal" min="5" step="any" />
+                            <!-- quitar value-->
+                        </div>
+                        <!-- checkbox -->
+                        <div id="checkboxModal">
+                            <input type="checkbox" id="checkRebuysModal" class="elementMttModal" /><label
+                                for="checkRebuysModal" class="input">Recompras</label>
+                            <input type="checkbox" id="checkAddonsModal" class="" /><label for="checkAddonsModal"
+                                class="input">Add-ons</label>
+                        </div>
+                        <!-- fin recompras -->
+                        <div id="endRebuysDivModal">
+                            <label for="endRebuysModal">Recompras hasta final de nivel:</label>
+                            <input type="number" id="endRebuysModal" class="input" min="1" step="1" />
+                        </div>
+                        <!-- botones -->
+                        <div id="mttDivBtnModal" class="buttons">
+                            <button id="mttDivSendModal" type="submit" class="acept btnModal" disabled>
+                                Enviar
+                            </button>
+                            <button id="mttDivResetModal" class="cancel btnModal" disabled>
+                                Resetear
+                            </button>
+                        </div>
+                    </div>
+                    <!-- premios -->
+                    <div id="prizesDivModal">
+                        <h4>Premios</h4>
+                        <div id="totalPrizeDivModal">
+                            <!-- total -->
+                            <label for="totalPrizeModal">Premio total:</label>
+                            <input type="text" id="totalPrizeModal" class="input" readonly disabled />
+                            <span>€</span>
+                        </div>
+                        <div id="paidPlacesDivModal">
+                            <!-- puestos premiados -->
+                            <label for="paidPlacesModal">Puestos premiados:</label>
+                            <input type="number" id="paidPlacesModal" class="input" min="2" max="9" step="1"
+                                placeholder="9 max." />
+                        </div>
+                        <!-- boton generar -->
+                        <div>
+                            <button id="prizesGenerateBtnModal" class="info" disabled>
+                                Generar
+                            </button>
+                        </div>
+                        <!-- tabla -->
+                        <table id="tablePrizesModal">
+                            <thead>
+                                <tr>
+                                    <th>Puesto</th>
+                                    <th>%</th>
+                                    <th>Premio</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyPrizesModal"></tbody>
+                            <tfoot>
+                                <tr id="totalPrizesRowModal" class="totalRow">
+                                    <td><strong>Total</strong></td>
+                                    <td><strong>0%</strong></td>
+                                    <td><strong>0.00 €</strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <!-- botones -->
+                        <div id="prizesDivBtnModal" class="buttons">
+                            <button id="prizesSendBtnModal" class="acept" disabled>Enviar</button>
+                            <button id="prizesResetBtnModal" class="cancel" disabled>
+                                Resetear
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                <!-- niveles -->
+                <section id="sectLevelsModal">
+                    <h4>Niveles</h4>
+                    <div id="levelsDivModal1">
+                        <!-- select -->
+                        <select id="selectLevelsModal">
+                            <option value="custom">Personalizado</option>
+                        </select>
+                        <!-- nombre personalizado -->
+                        <input type="text" id="titleLevelsModal" placeholder="Nombre nivel personalizado" />
+                        <!-- botones -->
+                        <button id="saveLevelsBtnModal" class="acept btnModal" disabled>
+                            Guardar
+                        </button>
+                        <button id="deleteLevelsBtnModal" class="cancel btnModal" disabled>
+                            Eliminar
+                        </button>
+                    </div>
+                    <div id="levelsDivModal2">
+                        <!-- tabla -->
+                        <table id="tableLevelsModal">
+                            <thead>
+                                <tr>
+                                    <th>Nivel</th>
+                                    <th>SB</th>
+                                    <th>BB</th>
+                                    <th>Ante</th>
+                                    <th>Tiempo</th>
+                                    <th>Accion</th>
+                                </tr>
+                            </thead>
+                            <!-- tbody -->
+                            <tbody id="tbodyLevelsModal">
+                                <!-- fila 1-->
+                                <tr>
+                                    <!-- nivel -->
+                                    <td>
+                                        <input type="text" class="tdLevelsModal" value="1" readonly />
+                                    </td>
+                                    <!-- sb -->
+                                    <td>
+                                        <input type="number" class="tdLevelsModal" min="100" step="100" value="100" />
+                                    </td>
+                                    <!-- bb -->
+                                    <td>
+                                        <input type="number" class="tdLevelsModal" min="100" step="100" value="100" />
+                                    </td>
+                                    <!-- ante -->
+                                    <td>
+                                        <input type="number" class="tdLevelsModal" min="100" step="100" value="100" />
+                                    </td>
+                                    <!-- tiempo -->
+                                    <td>
+                                        <input type="number" class="tdLevelsModal" min="1" step="1" value="15" />
+                                    </td>
+                                    <!-- botones -->
+                                    <td>
+                                        <button class="deleteRowLevels">
+                                            <i class="fa-solid fa-x" aria-hidden="true"></i>
+                                        </button>
+                                        <button class="addBreakRowLevels">
+                                            <i class="fa-solid fa-pause" aria-hidden="true"></i>
+                                        </button>
+                                        <button class="addRowLevels">
+                                            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <!-- fin fila 1-->
+                            </tbody>
+                            <tfoot id="tfootLevelsModal">
+                                <tr id="totalLevelsRow" class="totalRow">
+                                    <td id="totalLevelsLevels">1</td>
+                                    <td class="hidden"></td>
+                                    <td class="hidden"></td>
+                                    <td class="hidden"></td>
+                                    <td id="totalTimeLevels"></td>
+                                    <td class="hidden"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div id="levelsBtnsModal" class="buttons">
+                            <button id="sendLevelsModal" class="acept btnModal">Enviar</button>
+                            <button id="resetLevelsModal" class="cancel btnModal">
+                                Resetear
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                <!-- close modal -->
+                <section id="closeBtnModal">
+                    <button id="closeModal" class="cancel">Cerrar</button>
+                </section>
+            </div>
+        </div>
+        <script src="/js/js.js"></script>
+    </body>
+
+    </html>

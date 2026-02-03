@@ -1,0 +1,316 @@
+/**************** GENERAL ****************/
+:root {
+  --white: white;
+  --black: black;
+  --red: red;
+  --red1: #9c0505;
+  --red2: #800000;
+  --red3: #b22222;
+  --red4: #942525;
+  --blue: blue;
+  --blue1: #002147;
+  --blue2: #003366;
+  --blue3: #004080;
+  --blue4: #00509e;
+  --blue5: #589ee4;
+  --blue6: #c5def7;
+  --green: green;
+  --green1: #078b07;
+  --green2: #0a440a;
+  --green3: #045e04;
+  --green4: #127c12;
+  --gray: gray;
+  --gray1: #beb6b6;
+  --gray2: #5f5151;
+  --orange: #f0730d;
+  --yellow: #fcf17f;
+  --green: green;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  color: var(--white);
+  background-color: var(--blue1);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: var(--gray1);
+  color: var(--gray);
+}
+
+.grid-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 5px;
+  padding: 5px;
+}
+
+.one {
+  background-color: var(--blue4);
+}
+
+.two {
+  background-color: var(--blue2);
+}
+
+.three {
+  background-color: var(--blue3);
+}
+
+.top-row,
+.bottom-row {
+  border: 1px solid var(--white);
+  border-radius: 5px;
+}
+
+.div {
+  border: 1px solid var(--white);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.btnAction:hover,
+.btnEdit:hover {
+  background-color: var(--yellow);
+}
+
+.btnAction {
+  border-radius: 5px;
+  font-size: 1.25rem;
+}
+
+.btnEdit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  height: 1.5rem;
+  width: 1.5rem;
+  font-size: 1.75rem;
+}
+
+/**************** FIRST ROW ****************/
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2.5rem;
+}
+
+#settingsBtn,
+#themeBtn {
+  margin-right: auto;
+  font-size: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border-radius: 5px;
+}
+
+#title {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 2rem;
+}
+
+/**************** MAIN-CONTENT ****************/
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  gap: 5px;
+}
+
+.column {
+  display: grid;
+  text-align: center;
+  gap: 5px;
+}
+
+#col1,
+#col3 {
+  grid-template-rows: repeat(4, 1fr);
+}
+
+#col2 {
+  grid-template-rows: 1fr 4fr 2fr 1fr 2fr;
+}
+
+/* LEVEL */
+#levelDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#level {
+  width: 10rem;
+}
+
+#lev- {
+  padding-bottom: 0.3rem;
+}
+
+/* TIME */
+#timeDiv {
+  display: grid;
+  grid-template-rows: 5fr 1fr;
+}
+
+#timeDivBtn {
+  display: flex;
+  justify-content: center;
+  align-self: first baseline;
+  gap: 10px;
+}
+
+#time {
+  font-size: 10rem;
+  font-weight: bold;
+}
+
+#pause,
+#reset {
+  display: none;
+}
+
+/* BLINDS */
+#blinds {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+#blindDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+#sBl {
+  font-size: 4.5rem;
+}
+
+#sA1 {
+  font-size: 3.25rem;
+}
+
+#sA2 {
+  font-size: 3.75rem;
+}
+
+/* NEXT BLINDS */
+#nextBlinds {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 2.75rem;
+}
+
+#sNBl1 {
+  font-size: 2rem;
+}
+
+#sNBl2 {
+  font-size: 2.5rem;
+}
+
+#sNBl3 {
+  font-size: 2rem;
+}
+
+#sNBl4 {
+  font-size: 2rem;
+}
+
+/* CONTROL PANEL */
+.panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+#row1,
+#row2 {
+  gap: 15px;
+  font-size: 1.5rem;
+}
+
+#row1 {
+  margin-bottom: 0.5rem;
+}
+
+.pPanel {
+  width: 8rem;
+}
+
+#e-,
+#a- {
+  margin-left: 5rem;
+}
+
+#l-,
+#r-,
+#e-,
+#a- {
+  padding-bottom: 0.3rem;
+}
+
+/**************** LAST ROW ****************/
+#lastRow {
+  display: flex;
+  justify-content: center;
+}
+
+.bottom-row {
+  padding: 0.5rem;
+}
+
+#infoMtt,
+#prizes {
+  font-size: 1.75rem;
+  text-align: center;
+}
+
+#prizes {
+  display: none;
+}
+
+#iM2,
+#iM4,
+#iM5,
+#iM7 {
+  font-weight: bolder;
+  font-size: 2rem;
+}
+
+/**************** THEME ****************/
+#themeDiv {
+  display: none;
+}
