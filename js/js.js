@@ -262,12 +262,19 @@ function createTimer(renderElement, isCountDown = true, time = "00:00:00") {
         if (isCountDown) {
             secs--;
 
-            if (secs === 65) {
+            // --- LÓGICA PARA SILENCIAR ANTES DE DESCANSO ---
+            // Comprobamos si el siguiente nivel existe y si es un "Descanso"
+            const siguienteEsDescanso = arrayLevels[iArrayLevels + 1] &&
+                arrayLevels[iArrayLevels + 1][0] === "Descanso";
+
+            // Solo suena si NO es el nivel previo a un descanso
+            if (secs === 65 && !siguienteEsDescanso) {
                 soundMinute.play().catch(err => console.log('Error audio:', err));
             }
 
             if (secs === 0) {
-                if (!upLevel.disabled) {
+                // Solo suena el aviso de "Suben ciegas" si no va a haber descanso
+                if (!upLevel.disabled && !siguienteEsDescanso) {
                     soundEnd.play().catch(err => console.log('Error audio:', err));
                 }
 
