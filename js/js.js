@@ -257,7 +257,7 @@ function createTimer(renderElement, isCountDown = true, time = "00:00:00") {
     const soundEnd = new Audio('./audio/subenCiegas2.mp3');
     soundMinute.preload = 'auto';
     soundEnd.preload = 'auto';
-    console.log('object');
+    
     const interval = setInterval(() => {
         if (isCountDown) {
             secs--;
